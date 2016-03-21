@@ -226,42 +226,6 @@ endmodule
 // Create Date: 03/20/2016 12:50:02 PM
 // Design Name: 
 // Module Name: LZD_48
-/*
-module LZD_48 (input clk, input [47:0] a, output reg [5:0] p, output reg v);
-
-wire vl, vr;
-wire [4:0] pl;
-wire [3:0] pr;
-reg vr1;
-reg [3:0] pr1;
-
-	LZD_32 L9(.clk(clk), .a(a[47:16]), .p(pl[4:0]) , .v(vl));		// Left LZD32
-	LZD_16 L10(.clk(clk), .a(a[15:0]), .p(pr[3:0]), .v(vr));		// Right LZD16
-
-	always @(posedge clk, pl, pr, vl, vr)
-	begin
-
-		// Re-timing LZD16 OPs as they come one cycle early
-		vr1 <= vr;
-		pr1 <= pr;
-
-		// LZD Algorithm
-		v <= vl | vr1;
-				
-		if(vl == 1'b1)
-		begin
-			p <= {1'b0, pl};
-		end
-
-		else if(vl == 1'b1)// && vl == 1'b0)
-		begin
-			p <= {2'b1, pr1};
-		end
-
-	end
-
-endmodule
-*/
 
 module LZD_48 (clk,  a, p,  v);
 input clk;
