@@ -251,7 +251,7 @@ reg [3:0] pr1;
 	         .p(pr),
 	         .v(vr));		
 
-	always @(posedge clk, pl, pr, vl, vr)
+	always @(pr, vr, pl,  vl,a)
 	begin
     
       // Re-timing LZD16 OPs as they come one cycle early
@@ -263,12 +263,12 @@ reg [3:0] pr1;
 				
 		if(vl == 1'b1)
 		begin
-			p <= {1'b0, pl};
+			p <= {{1'b0},{ pl}};
 		end
 
-		else if(vr1 == 1'b1)// && vl == 1'b0)
+		else if(vl == 1'b0)// && vl == 1'b0)
 		begin
-			p <= {2'b10, pr1};
+			p <= {{2'b10},{ pr1}};
 		end
 	end
 endmodule
