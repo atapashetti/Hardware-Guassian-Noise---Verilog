@@ -20,8 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Log( );
-
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -42,9 +40,7 @@ module Log( );
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
-
-module cos_sine(clk, rst, U0, e);
+module Log(clk, rst, U0, e);
 input clk, rst;
 input [47:0] U0;
 output [30:0] e ;
@@ -53,12 +49,13 @@ reg [29: 0] c0[255:0];
 reg [21:0] c1[255:0];
 reg [12:0] c2[255:0];
 reg [5:0] p;
-
-
-wire v, ln2;
-wire [41:0]U0;
 reg [5:0] expe, e1;
 reg [30:0]ye ;
+
+wire v, ln2;
+wire [47:0]U0;
+wire [5:0] expe;
+
 
 LZD_48 lzd(
     .clk(clk),  
@@ -74,7 +71,7 @@ $readmemh("Z:\ELEN249\netlist\ip_catalog\HwNG\HwNG.srcs\sources_1\new\log_coef_c
 end
 
 always @(posedge clk) begin
-if((!rst) )
+if(!rst)
 	begin
 	
      // range reduction
@@ -88,9 +85,7 @@ if((!rst) )
     
     ln2 = 0.6931; // ln(2) = 0.6931
     e1 = expe * ln2;
-    e = (e1 - ye) <<1;
+    e = (e1 - ye) <<1; 
 	end
 end
 endmodule
-
-
