@@ -22,7 +22,7 @@
 
 module cos_sine_TB( );
 
-reg clk, reset;
+reg clk, rst;
 reg [15:0] U1;
 wire [15:0] g0, g1;
 
